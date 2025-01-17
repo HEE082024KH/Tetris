@@ -32,4 +32,17 @@ public partial class Form1 : Form
         // Initialize canvas dot array. by default all elements are zero
         canvasDotArray = new int[canvasWidth, canvasHeight];
     }
+
+    private int currentX;
+    private int currentY;
+
+    private Shape getRandomShapeWithCenterAligned()
+    {
+        var shape = ShapesHandler.GetRandomShape();
+        
+        // Calculate the x and y values as if the shape lies in the center
+        currentX = 7;
+        currentY = -shape.Height;
+        return shape;
+    }
 }
