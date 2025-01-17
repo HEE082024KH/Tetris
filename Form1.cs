@@ -45,4 +45,51 @@ public partial class Form1 : Form
         currentY = -shape.Height;
         return shape;
     }
+    
+    // returns if it reaches the bottom or touches any other blocks
+    private bool moveShapeIfPossible(int moveDown = 0, int moveSide = 0)
+    {
+        var newX = currentX + moveDown;
+        var newY = currentY + moveSide;
+        
+        // check if it reaches the bottom or side bar
+        if (newX < 0 || newX + currentShape.Width > canvasWidth || newY + currentShape.Height > canvasHeight)
+            return false;
+        
+        // check if it touches any other blocks 
+        for (int i = 0; i < currentShape.Width; i++)
+        {
+            for (int j = 0; j < currentShape.Height; j++)
+            {
+                if (newY + j > 0 && canvasDotArray[newX + i, newY + j] == 1 && currentShape.Dots[j, i] == 1)
+                    return false;
+            }
+        }
+        
+        currentX = newX;
+        currentY = newY;
+        
+        drawShape();
+        
+        return true;
+    }
+
+    private Bitmap workingBitmap;
+    private Graphics workingGraphics;
+
+    private void drawShape()
+    {
+        workingBitmap = new Bitmap(canvasBitmap);
+        workingGraphics = Graphics.FromImage(workingBitmap);
+
+        for (int i = 0; i < currentShape.Width; i++)
+        {
+            for (int j = 0; j < currentShape.Height; j++)
+            {
+                if (currentShape.Dots[j, i] == 1)
+                    workingGraphics.FillRectangle(Brushes.Black, (currentX + i) * dotSize, (currentY + j) * dotSize, dotSize, dotSize);
+            }
+        }
+    }
+    pictureBox1.Image = workingBitmap;
 }
