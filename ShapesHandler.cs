@@ -17,7 +17,7 @@ static class ShapesHandler
                 Dots = new int[,]
                 {
                     { 1, 1 },
-                    { 1, 1 },
+                    { 1, 1 }
                 }
             },
             new Shape
@@ -26,10 +26,67 @@ static class ShapesHandler
                 Height = 4,
                 Dots = new int[,]
                 {
-                    { 1},
-                    { 1},
+                    { 1 },
+                    { 1 }
                 }
             },
+            new Shape
+            {
+                Width = 3,
+                Height = 2,
+                Dots = new int[,]
+                {
+                    { 0, 1, 0 },
+                    { 1, 1, 1 },
+                }
+            },
+            new Shape
+            {
+                Width = 3,
+                Height = 2,
+                Dots = new int[,]
+                {
+                    { 0, 0, 1 },
+                    { 1, 1, 1 },
+                }
+            },
+            new Shape
+            {
+                Width = 3,
+                Height = 2,
+                Dots = new int[,]
+                {
+                    { 1, 0, 0 },
+                    { 1, 1, 1 },
+                }
+            },
+            new Shape
+            {
+                Width = 3,
+                Height = 2,
+                Dots = new int[,]
+                {
+                    { 1, 1, 0 },
+                    { 0, 1, 1 },
+                }
+            },
+            new Shape
+            {
+                Width = 3,
+                Height = 2,
+                Dots = new int[,]
+                {
+                    { 0, 1, 1 },
+                    { 1, 1, 0 },
+                }
+            },
+            // new shapes can be added here..
         };
+    }
+    // Get a shape form the array in a random basis
+    public static Shape GetRandomShape()
+    {
+        var Shape = shapesArray[new Random().Next(shapesArray.Length)];
+        return Shape;
     }
 }
