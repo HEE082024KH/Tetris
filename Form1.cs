@@ -1,3 +1,7 @@
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace Tetris;
 
 public partial class Form1 : Form
@@ -13,7 +17,6 @@ public partial class Form1 : Form
     int canvasWidth = 15, canvasHeight = 20;
     private int[,] canvasDotArray;
     private int dotSize = 20;
-    private PictureBox pictureBox1;
     
     private void loadCanvas()
     {
@@ -24,7 +27,7 @@ public partial class Form1 : Form
         // Create Bitmap with picture box's size
         canvasBitmap = new Bitmap(canvasWidth, canvasHeight);
         canvasGraphics = Graphics.FromImage(canvasBitmap);
-        canvasGraphics.FillRectangle(Brushes.LightGray, 0, 0, canvasWidth, canvasHeight);
+        canvasGraphics.FillRectangle(Brushes.Black, 0, 0, canvasWidth, canvasHeight);
         
         // Load bitmap into picture box
         pictureBox1.Image = canvasBitmap;
@@ -87,7 +90,7 @@ public partial class Form1 : Form
             for (int j = 0; j < currentShape.Height; j++)
             {
                 if (currentShape.Dots[j, i] == 1)
-                    workingGraphics.FillRectangle(Brushes.Black, (currentX + i) * dotSize, (currentY + j) * dotSize, dotSize, dotSize);
+                    workingGraphics.FillRectangle(Brushes.Blue, (currentX + i) * dotSize, (currentY + j) * dotSize, dotSize, dotSize);
             }
         }
     }
